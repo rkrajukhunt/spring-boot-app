@@ -1,0 +1,39 @@
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Index Page</title>
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">All Student Data</a>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="row">
+		<div class="container">
+			<div class="login-register-form-section">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active col-xs-6"><a th:href="@{/reg}">Add
+							Student Data</a></li>
+					<li class="col-xs-6"><a th:href="@{#}">Show
+							Student Result</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<table id="example" class="table table-striped table-bordered table-responsive-md" cellspacing="0" width="100%">  
+	
+	<tr th:each = "s: ${user}">
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.age}"></td>
+        <td th:text="${s.marks}"></td>
+        <td th:text="${s.city}"></td>
+    </tr>                            
+</table>
+</body>
+</html>

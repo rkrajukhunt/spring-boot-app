@@ -1,0 +1,118 @@
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Index Page</title>
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	function ajaxGet(){
+		$.ajax({
+			type : "GET",
+			url : "/showStudent/1",
+			success: function(result){
+				$('#getResultDiv ul').empty();
+					var custList = "";
+					$.each(result.data, function(i, student){
+						if(i<=5){
+							var student = "Customer with Id = " + i + ", firstname = " + student.name + "<br>";
+							$('#getResultDiv').append(student)
+						}
+						alert(i);
+			        });
+					console.log("Success: ", result);
+			},
+			error : function(e) {
+				$("#getResultDiv").html("<strong>Error</strong>");
+				console.log("ERROR: ", e);
+			}
+		});	
+	}
+});
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">All Student Data</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row">
+		<div class="container">
+			<div class="login-register-form-section">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="col-xs-6"><a th:href="@{/reg}">Add Student Data</a></li>
+					<li class="active col-xs-6"><a th:href="@{#}">Show Student
+							Result</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<form class="form-inline" method="post">
+		<fieldset>
+
+			<!-- Form Name -->
+<br>
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-2 control-label col-sm-offset-2 col-sm-10" for="selectbasic">Age</label>
+				<div class="col-md-4">
+					<select id="agegroup" name="agegrouplist" class="form-control">
+						<option value="1">Children Age Rang 1 to 10</option>
+						<option value="2">Young Age Rang 10 to 20</option>
+						<option value="3">young adult Age Rang 20 to 30</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label col-sm-offset-2 col-sm-10" for="selectbasic">City
+					Group</label>
+				<div class="col-md-5">
+					<select id="citys" name="cityName" class="form-control" >
+						<option value="1">All City</option>
+						<option th:each="c: ${city}" th:text="${c.city}" th:value="${c.city}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-8">
+					<button id="show" name="save" class="btn btn-primary">Show</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+
+	<table id="example"
+		class="table table-striped table-bordered table-responsive-md"
+		cellspacing="0" width="100%">
+		<legend align="center">Student Result</legend>
+
+		<thead>
+			<tr>
+				<th data-field="prenom" data-filter-control="input"
+					data-sortable="true">Name</th>
+				<th data-field="date" data-filter-control="select"
+					data-sortable="true">Age</th>
+				<th data-field="examen" data-filter-control="select"
+					data-sortable="true">Marks</th>
+				<th data-field="note" data-sortable="true">City</th>
+			</tr>
+
+		</thead>
+		<tr th:each="s: ${students}" id="getResultDiv">
+			<td th:text="${s.name}"></td>
+			<td th:text="${s.age}"></td>
+			<td th:text="${s.marks}"></td>
+			<td th:text="${s.city}"></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Index Page</title>
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">All Student Data</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row">
+		<div class="container">
+			<div class="login-register-form-section">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active col-xs-6"><a th:href="@{/#}">Add Student
+							Data</a></li>
+					<li class=" col-xs-6"><a th:href="@{showStudent}">Show
+							Student Result</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+
+	<form class="form-horizontal" action="save" method="post">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend align="center">Student Reg</legend>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name">Name</label>
+				<div class="col-md-4">
+					<input id="name" name="name" type="text"
+						placeholder="Enter Your Name" class="form-control input-md">
+
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="age">Age</label>
+				<div class="col-md-4">
+					<input id="age" name="age" type="text" placeholder="Enter Your Age"
+						class="form-control input-md" required="">
+
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="marks">Marks</label>
+				<div class="col-md-4">
+					<input id="marks" name="marks" type="text"
+						placeholder="Enter Your Mark" class="form-control input-md"
+						required="">
+
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="city">City</label>
+				<div class="col-md-4">
+					<input id="city" name="city" type="text"
+						placeholder="Enter Your City" class="form-control input-md"
+						required="">
+
+				</div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="save"></label>
+				<div class="col-md-4">
+					<button id="save" name="save" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Jun 07 01:42:51 IST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-0163-d6bb-04c6-0000063d2480 
+on database directory memory:/media/rk/King/BCA - MCA/MCA/MCA SEM - 5/SpringBoot/internshipProject/testdb with class loader sun.misc.Launcher$AppClassLoader@764c12b6 
+Loaded from file:/home/rk/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_171-8u171-b11-0ubuntu0.18.04.1-b11
+user.dir=/media/rk/King/BCA - MCA/MCA/MCA SEM - 5/SpringBoot/internshipProject
+os.name=Linux
+os.arch=amd64
+os.version=4.15.0-22-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

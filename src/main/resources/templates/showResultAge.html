@@ -1,35 +1,38 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 <title>Index Page</title>
-<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
 <script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 
 <script>
-$(document).ready(function(){
-	function ajaxGet(){
-		$.ajax({
-			type : "GET",
-			url : "/showStudent/1",
-			success: function(result){
-				$('#getResultDiv ul').empty();
-					var custList = "";
-					$.each(result.data, function(i, student){
-						if(i<=5){
-							var student = "Customer with Id = " + i + ", firstname = " + student.name + "<br>";
-							$('#getResultDiv').append(student)
+	$(document).ready(
+			function() {
+				function ajaxGet() {
+					$.ajax({
+						type : "GET",
+						url : "/showStudent/1",
+						success : function(result) {
+							$('#getResultDiv ul').empty();
+							var custList = "";
+							$.each(result.data, function(i, student) {
+								if (i <= 5) {
+									var student = "Customer with Id = " + i
+											+ ", firstname = " + student.name
+											+ "<br>";
+									$('#getResultDiv').append(student)
+								}
+							});
+							console.log("Success: ", result);
+						},
+						error : function(e) {
+							$("#getResultDiv").html("<strong>Error</strong>");
+							console.log("ERROR: ", e);
 						}
-						alert(i);
-			        });
-					console.log("Success: ", result);
-			},
-			error : function(e) {
-				$("#getResultDiv").html("<strong>Error</strong>");
-				console.log("ERROR: ", e);
-			}
-		});	
-	}
-});
+					});
+				}
+			});
 </script>
 </head>
 <body>
@@ -55,12 +58,11 @@ $(document).ready(function(){
 
 	<form class="form-inline" method="post">
 		<fieldset>
-
-			<!-- Form Name -->
-<br>
+			<br>
 			<!-- Select Basic -->
 			<div class="form-group">
-				<label class="col-md-2 control-label col-sm-offset-2 col-sm-10" for="selectbasic">Age</label>
+				<label class="col-md-2 control-label col-sm-offset-2 col-sm-10"
+					for="selectbasic">Age</label>
 				<div class="col-md-4">
 					<select id="agegroup" name="agegrouplist" class="form-control">
 						<option value="1">Children Age Rang 1 to 10</option>
@@ -72,12 +74,13 @@ $(document).ready(function(){
 
 			<!-- Select Basic -->
 			<div class="form-group">
-				<label class="col-md-4 control-label col-sm-offset-2 col-sm-10" for="selectbasic">City
-					Group</label>
+				<label class="col-md-4 control-label col-sm-offset-2 col-sm-10"
+					for="selectbasic">City Group</label>
 				<div class="col-md-5">
-					<select id="citys" name="cityName" class="form-control" >
+					<select id="citys" name="cityName" class="form-control">
 						<option value="1">All City</option>
-						<option th:each="c: ${city}" th:text="${c.city}" th:value="${c.city}"></option>
+						<option th:each="c: ${city}" th:text="${c.city}"
+							th:value="${c.city}"></option>
 					</select>
 				</div>
 			</div>

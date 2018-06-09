@@ -23,14 +23,14 @@ public class Student {
 	private int age;
 
 	@Column(length = 30, nullable = false)
-	private String marks;
+	private int marks;
 
 	@Column(length = 30, nullable = false)
 	private String city;
 
 	public Student() {}
 
-	public Student(Integer id, String name, int age, String marks, String city) {
+	public Student(Integer id, String name, int age, int marks, String city) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -63,11 +63,11 @@ public class Student {
 		this.age = age;
 	}
 
-	public String getMarks() {
+	public int getMarks() {
 		return marks;
 	}
 
-	public void setMarks(String marks) {
+	public void setMarks(int marks) {
 		this.marks = marks;
 	}
 

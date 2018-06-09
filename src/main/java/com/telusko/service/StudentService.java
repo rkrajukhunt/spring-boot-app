@@ -11,7 +11,7 @@ import com.telusko.repositorie.StudentRepositorie;
 
 @Service
 public class StudentService {
-	
+
 	@Autowired
 	private StudentRepositorie studentRepositorie;
 
@@ -23,8 +23,16 @@ public class StudentService {
 		return studentRepositorie.findAll();
 	}
 
-	public List<Student> findByAgeGroup(int start, int end) {
+	public List<Object[]> findByAgeGroup(int start, int end) {
 		return studentRepositorie.findByAgeBetweenQuery(start, end);
+	}
+
+	public List<Object[]> findByAgeGroup1(int start, int end) {
+		return studentRepositorie.findByAgeBetweenQuery1(start, end);
+	}
+	
+	public List<Object[]> findByAgeWithCityGroup(int start, int end, String city) {
+		return studentRepositorie.findByAgeAndCityBetweenQuery(start, end, city);
 	}
 
 	public Object findCity() {

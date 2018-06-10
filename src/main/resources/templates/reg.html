@@ -3,6 +3,7 @@
 <title>Index Page</title>
 <link rel="stylesheet" type="text/css"
 	href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -17,10 +18,9 @@
 		<div class="container">
 			<div class="login-register-form-section">
 				<ul class="nav nav-tabs" role="tablist">
-					<li class="active col-xs-6"><a th:href="@{/#}">Add Student
-							Data</a></li>
+					<li class="active col-xs-6"><a th:href="@{/#}">Create Student Marksheet</a></li>
 					<li class=" col-xs-6"><a th:href="@{showStudent}">Show
-							Student Result</a></li>
+							Student Marksheet</a></li>
 				</ul>
 			</div>
 		</div>
@@ -30,10 +30,7 @@
 
 	<form class="form-horizontal" action="save" method="post">
 		<fieldset>
-
-			<!-- Form Name -->
-			<legend align="center">Student Reg</legend>
-
+<br><br>
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="name">Name</label>
@@ -87,6 +84,13 @@
 
 		</fieldset>
 	</form>
-
+	<div class="text-center center-block">
+            <p class="txt-railway">all data stored in rds</p>
+            <br />
+                <a href="https://www.facebook.com/teluskolearnings/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+	            <a href="https://twitter.com/telusko"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+	            <a href="https://plus.google.com/communities/112579291945028379574"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+	            <a href="mailto:javaboynavin@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+	 </div>
 </body>
 </html>

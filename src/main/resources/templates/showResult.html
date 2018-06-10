@@ -1,67 +1,90 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 <title>Index Page</title>
-<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
-	
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 <script>
-var age=1;
-var city=1;
-var pathUrl="/showStudentAPI/"+age;
+	var age = 1;
+	var city = 1;
+	var pathUrl = "/showStudentAPI/" + age;
 
-function callAPI(pathurl){
-	$.ajax({
-		url : pathurl,
-		type : "get",
-		success : function(response) {
-			$('#getResultDiv').empty();
-			var count = 0;
-			for (item in response) {
-				count++;
-				if(count<=5){
-					var student = "<table class='table table-striped table-bordered table-responsive-md' cellspacing='0' width='100%'><tr><td>"+response[item][0] + "</td><td>"+response[item][1] + "</td><td>"+response[item][2] + "</td><td>"+response[item][3] + "</td></tr>";
-					$('#getResultDiv').append(student)}
-				}
-			},
-		error : function(e) {
-			alert("Submit failed" + JSON.stringify(e));
+	function callAPI(pathurl) {
+		$
+				.ajax({
+					url : pathurl,
+					type : "get",
+					success : function(response) {
+						$('#getResultDiv').empty();
+						var tab = "<table id='example' class='table table-striped table-bordered table-responsive-md'><thead><tr><th data-sortable='true'>Name</th><th data-sortable='true'>Age</th><th data-sortable='true'>Marks</th><th data-sortable='true'>City</th></tr></thead>";
+						$('#getResultDiv').append(tab)
+						var count = 0;
+						for (item in response) {
+							count++;
+							if (count <= 5) {
+								var student = "<table id='myTable' class='table table-striped table-bordered table-responsive-md'><tr><td>"
+										+ response[item][0]
+										+ "</td><td>"
+										+ response[item][1]
+										+ "</td><td>"
+										+ response[item][2]
+										+ "</td><td>"
+										+ response[item][3] + "</td></tr>";
+								$('#getResultDiv').append(student)
+							}
+						}
+					},
+					error : function(e) {
+						alert("Submit failed" + JSON.stringify(e));
+					}
+				});
+	}
+
+	function ageAjax() {
+		var ageGroup = $("#agegroup option:selected").val();
+		age = ageGroup;
+		if (city == 1) {
+			pathUrl = "/showStudentAPI/" + age;
+		} else {
+			pathUrl = "/showStudentAPI/" + age + "/" + city;
 		}
+		callAPI(pathUrl);
+	}
+
+	function cityAjax() {
+		var cityGroup = $("#citys option:selected").val();
+		if (cityGroup == 1) {
+			city = 1;
+			pathUrl = "/showStudentAPI/" + age;
+		} else {
+			city = cityGroup;
+			pathUrl = "/showStudentAPI/" + age + "/" + city;
+		}
+		callAPI(pathUrl);
+	}
+
+	$(document).on('click', "#agegroup", function(event) {
+		ageAjax();
 	});
-}
 
-function ageAjax()
-{
-	var ageGroup= $("#agegroup option:selected").val();
-	age=ageGroup;
-	if(city==1){
-		pathUrl="/showStudentAPI/"+age;
-	}else{
-		pathUrl="/showStudentAPI/"+age+"/"+city;
-	}
-	callAPI(pathUrl);
-}
+	$(document).on('click', "#citys", function(event) {
+		cityAjax();
+	});
 
-function cityAjax()
-{
-	var cityGroup= $("#citys option:selected").val();
-	if(cityGroup==1){
-		city=1;
-		pathUrl="/showStudentAPI/"+age;
-	}else{
-		city=cityGroup;
-		pathUrl="/showStudentAPI/"+age+"/"+city;
-	}
-	callAPI(pathUrl);
-}
-
-$(document).on('click', "#agegroup", function(event) {
-	ageAjax();
-});
-
-$(document).on('click', "#citys", function(event) {
-    cityAjax();
-});
+	$(document).ready(function() {
+		ageAjax();
+	});
+	
+	$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#myTable tr").filter(function() {
+		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		    });
+		  });
+		});
 </script>
 
 </head>
@@ -78,9 +101,10 @@ $(document).on('click', "#citys", function(event) {
 		<div class="container">
 			<div class="login-register-form-section">
 				<ul class="nav nav-tabs" role="tablist">
-					<li class="col-xs-6"><a th:href="@{/reg}">Add Student Data</a></li>
+					<li class="col-xs-6"><a th:href="@{/reg}">Create Student
+							Marksheet</a></li>
 					<li class="active col-xs-6"><a th:href="@{#}">Show Student
-							Result</a></li>
+							Marksheet</a></li>
 				</ul>
 			</div>
 		</div>
@@ -88,12 +112,10 @@ $(document).on('click', "#citys", function(event) {
 
 	<form class="form-inline" method="post" action="/showStudent/1">
 		<fieldset>
-
-			<!-- Form Name -->
-<br>
-			<!-- Select Basic -->
+			<br> <br>
 			<div class="form-group">
-				<label class="col-md-2 control-label col-sm-offset-2 col-sm-10" for="selectbasic">Age</label>
+				<label class="col-md-2 control-label col-sm-offset-2 col-sm-10"
+					for="selectbasic">Age</label>
 				<div class="col-md-4">
 					<select id="agegroup" name="agegrouplist" class="form-control">
 						<option value="1">Children Age Rang 1 to 10</option>
@@ -105,10 +127,10 @@ $(document).on('click', "#citys", function(event) {
 
 			<!-- Select Basic -->
 			<div class="form-group">
-				<label class="col-md-4 control-label col-sm-offset-2 col-sm-10" for="selectbasic">City
-					Group</label>
+				<label class="col-md-4 control-label col-sm-offset-2 col-sm-10"
+					for="selectbasic">City</label>
 				<div class="col-md-5">
-					<select id="citys" name="cityName" class="form-control" >
+					<select id="citys" name="cityName" class="form-control">
 						<option value="1">All City</option>
 						<option value="pune">Pune</option>
 						<option value="Anand">Anand</option>
@@ -116,38 +138,36 @@ $(document).on('click', "#citys", function(event) {
 					</select>
 				</div>
 			</div>
-
 		</fieldset>
 	</form>
-
-	<table id="example"
-		class="table table-striped table-bordered table-responsive-md"
-		cellspacing="0" width="100%">
-		<legend align="center">Student Result</legend>
-
-		<thead>
-			<tr>
-				<th data-field="prenom" data-filter-control="input"
-					data-sortable="true">Name</th>
-				<th data-field="date" data-filter-control="select"
-					data-sortable="true">Age</th>
-				<th data-field="examen" data-filter-control="select"
-					data-sortable="true">Marks</th>
-				<th data-field="note" data-sortable="true">City</th>
-			</tr>
-
-		</thead>
-		<div id="getResultDiv">
-	        
-    	</div>	
-	<!--  	<tr th:each="s: ${students}" id="getResultDiv">
-			<td th:text="${s.name}"></td>
-			<td th:text="${s.age}"></td>
-			<td th:text="${s.marks}"></td>
-			<td th:text="${s.city}"></td>
-		</tr> -->
-	</table>
-	
-	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<div class="controls col-sm-12">
+								<div id="field1" class="input-group">
+									<input type="text" class="form-control" data-role="lookup"
+												id="myInput" placeholder="Search.."> 
+												<span class="input-group-addon">
+													<span class="glyphicon glyphicon-search"></span>
+												</span>
+								</div>
+							 </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+	<div id="getResultDiv"></div>
+	<div class="text-center center-block">
+            <p class="txt-railway"><b>all data stored in rds</b></p>
+            <br />
+                <a href="https://www.facebook.com/teluskolearnings/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+	            <a href="https://twitter.com/telusko"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+	            <a href="https://plus.google.com/communities/112579291945028379574"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+	            <a href="mailto:javaboynavin@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+	 </div>
 </body>
 </html>

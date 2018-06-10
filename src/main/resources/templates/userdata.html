@@ -17,10 +17,9 @@
 		<div class="container">
 			<div class="login-register-form-section">
 				<ul class="nav nav-tabs" role="tablist">
-					<li class="active col-xs-6"><a th:href="@{/reg}">Add
-							Student Data</a></li>
+					<li class="active col-xs-6"><a th:href="@{/reg}">Create Student Marksheet</a></li>
 					<li class="col-xs-6"><a th:href="@{showStudent}">Show
-							Student Result</a></li>
+							Student Marksheet</a></li>
 				</ul>
 			</div>
 		</div>
@@ -50,5 +49,6 @@
             <td><h4 th:text="${user.city}"></h4></td>  
         </tr>                      
 </table>
+<a href="/reg" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class IndexController {
 	@RequestMapping("/")
     public String root(Model model) {
 		model.addAttribute("reqUser", new Student());
-        return "reg.html";
+        return "reg";
     }
 	
 	@RequestMapping("/reg")
